@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% block title %}
+<title>关于悦世界</title>
+{% endblock %}
+{% block script_link %}
+<link rel="stylesheet" href="/static/css/about.css">
+{% endblock %}
+
+{% block body %}
+<!-- 公司介绍 -->
+<div class="about_us" style="background: url(/static/img/aboutus.png) no-repeat;">
+    <div class="about_con">
+        <div class="leftyh"><img src="/static/img/leftyh.png"/></div>
+        <div class="rightyh"><img src="/static/img/rightyh.png"/></div>
+        <div class="about_con_title">公司介绍</div>
+        <div class="about_con_infro">ABOUT US</div>
+        <div class="about_font"><p>
+            广州悦世界信息科技有限公司成立于2013年，是一家以网络游戏为发展起点，集研发、运营为一体的综合性互动娱乐企业。公司成立之初便专注于手机游戏研发，致力于打造高端精品手机游戏，是国内规模较大的手游研发公司之一。</p>
+            <br/>
+            <p>
+                经过数年的沉淀与发展，我们自主研发了《神域之光》《龙族传说》《风暴幻想》等几款备受玩家喜欢的热门手游，其中涉及神话、仙侠、魔幻、Q版、历史等各类题材，并与国外数百家知名企业建立了良好的合作伙伴关系，游戏用户遍及中国大陆及海外地区。</p>
+            <br/>
+            <p>“We develop games that amuse
+                pelope!”除了上线游戏外，我们的研发团队仍在努力尝试不同类型不同风格的项目，致力于打造多样化和创作性的游戏来满足玩家需求，用我们的行动来刷新我们在行业的奇迹。</p>
+        </div>
+
+    </div>
+</div>
+
+<!-- 公司文化 -->
+<div class="culture">
+    <div class="culture_con">
+        <div class="about_con_title">公司文化</div>
+        <div class="about_con_infro">CULTURE</div>
+        <div class="culture_pic">
+            <ul>
+                {% for o in cultures %}
+                <li>
+                    <img src="/media/{{o.image}}"/><br>
+                    <span style="color: #35AFFC;">{{o.title}}</span>
+                    <div class="c_p_font">
+                        {{o.desc|safe}}
+                    </div>
+                </li>
+                {% endfor %}
+
+
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- 公司生活 -->
+<div class="life" style="background: url(/static/img/life.jpg) no-repeat center;">
+    <div class="life_con">
+        <div class="about_con_title">悦世界生活</div>
+        <div class="about_con_infro">YRARWOELDLIFE</div>
+        <div class="lift_pic">
+            <ul>
+                {% for o in lifes %}
+                <li style="background: url(/static/img/lafitepic.jpg) no-repeat;">
+                    <p>01</p>
+                    <img src="/media/{{o.image}}"/>
+                    <div class="l_p_title">{{o.title}}</div>
+                    <div class="l_p_font">{{o.desc|safe}}</div>
+                </li>
+                {% endfor %}
+
+
+            </ul>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

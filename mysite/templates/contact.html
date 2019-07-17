@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block title %}
+	<title>联系我们</title>
+{% endblock %}
+{% block script_link %}
+			<link rel="stylesheet" href="/static/css/contact.css">
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=9s3fh2QwOUS4nrLYbvNiC2uzPUkc38GD"></script>
+
+{% endblock %}
+
+{% block body %}
+
+	<!-- 联系我们 -->
+	<div class="contact">
+		<div class="contact_con">
+			<div class="c_c_title">联系我们</div>
+			<div class="c_c_pic" id="mapcontainer" style="border:2px grey solid; height:480px">
+				<!--<img src="/static/img/contactpic.png"/>-->
+			</div>
+			<div class="c_c_font1">
+				<ul>
+					<li>地址：广州海珠区新港东路琶洲新村11号楼24层</li>
+					<li>社招邮箱：hr@yeahworld.com</li>
+					<li>校招邮箱：xiaozhao@yeahworld.com</li>
+					<li>乘车路线：地铁站-四号线万胜围站（D出口）</li>
+					<li>公交站-万胜围站</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+<script>
+	var map = new BMap.Map("mapcontainer");
+	var point = new BMap.Point(116.404, 39.915);
+	map.centerAndZoom(point, 15);
+	window.setTimeout(function(){
+    map.panTo(new BMap.Point(116.409, 39.918));
+	}, 1000);
+	map.enableScrollWheelZoom(true);
+	map.addControl(new BMap.NavigationControl());
+	map.addControl(new BMap.ScaleControl());
+	map.addControl(new BMap.OverviewMapControl());
+	map.addControl(new BMap.MapTypeControl());
+	map.setCurrentCity("北京"); // 仅当设置城市信息时，MapTypeControl的切换功能才能可用
+
+</script>
+{% endblock %}
+

@@ -1,0 +1,145 @@
+{% extends 'base.html' %}
+{% block title %}
+<title>首页</title>
+{% endblock %}
+{% block script_link %}
+<link rel="stylesheet" href="static/css/index.css">
+<link rel="stylesheet" type="text/css" href="static/js/lib/bootstrap-3.3.7-dist/css/bootstrap.css"/>
+<script src="static/js/lib/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+
+{% endblock %}
+
+{% block body %}
+<!-- 轮播图 -->
+<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+        {% for o in ads %}
+        {% if forloop.counter == 1 %}
+        <li data-target="#carousel-example-generic" data-slide-to="{{forloop.counter0}}" class="active"></li>
+
+        {% else %}
+        <li data-target="#carousel-example-generic" data-slide-to="{{forloop.counter0}}"></li>
+        {% endif %}
+        {% endfor %}
+
+
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+        {% for o in ads %}
+        {% if forloop.counter == 1 %}
+        <div class="item active">
+            <img src="/media/{{ o.image }}" alt="...">
+            <div class="carousel-caption">
+                {{o.desc}}
+            </div>
+        </div>
+        {% else %}
+        <div class="item">
+            <img src="/media/{{ o.image }}" alt="...">
+            <div class="carousel-caption">
+                {{o.desc}}
+            </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+
+
+    </div>
+
+    <!-- Controls -->
+    <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
+
+<!-- 热门推荐 -->
+<div class="recommend">
+    <div class="r_title">热门推荐</div>
+    <div class="r_infro">RECOMMEND GAME</div>
+    <div class="r_pic">
+        {% for o in hotgames %}
+        <div class="con_pic" style="background: url(media/{{o.image}}) no-repeat;">
+            <div class="r_c_cover">
+                <div class="r_c_c_title">{{o.title|safe}}</div>
+                <span class="r_c_line"></span>
+                <div class="r_c_c_font">{{o.desc}}</div>
+                <div class="r_c_c_btn"><a href="#"><img src="/static/img/right.png"/></a></div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- 视频播放 -->
+<div class="brang_video">
+    <div class="r_title">品牌视频</div>
+    <div class="r_infro">BRANG VIDEO</div>
+    <div class="b_content">
+
+
+        {% for o in gamevideos %}
+        {% if not forloop.counter|divisibleby:2 %}
+        <div class="b_content_infro" style="background: url(/media/{{o.image}}) no-repeat;">
+            <div class="b_con_cover">
+                <div class="video_play">
+                    <img src="/static/img/play.png"/>
+                </div>
+            </div>
+            <div class="play_video">
+                <video src="/media/{{o.video}}" width="100%" height="100%" controls></video>
+            </div>
+        </div>
+        <div class="b_content_infro">
+            <div class="b_c_infro_t">{{o.title}}</div>
+            <div class="b_c_infro_con">{{o.desc}}</div>
+            <div class="b_c_btn"><a href="#"><img src="/static/img/btn.png"></a></div>
+        </div>
+
+        {% else %}
+
+        <div class="b_content_infro">
+            <div class="b_c_infro_t b_c_t2">{{o.title}}</div>
+            <div class="b_c_infro_con b_c_t2">
+              {{o.desc}}
+            </div>
+            <div class="b_c_btn b_c_t2"><a href="#"><img src="/static/img/btn.png"></a></div>
+        </div>
+        <div class="b_content_infro" style="background: url(/media/{{o.image}}) no-repeat;">
+            <div class="b_con_cover">
+                <div class="video_play">
+                    <img src="/static/img/play.png"/>
+                </div>
+            </div>
+            <div class="play_video">
+                <video src="/media/{{o.video}}" width="100%" height="100%" controls></video>
+            </div>
+        </div>
+
+        {% endif %}
+        {% endfor %}
+
+
+    </div>
+</div>
+
+<script>
+		$(function() {
+			$(".video_play").click(function(){
+				$(this).parent().next().fadeIn();
+				$(this).parent().parent().find("video")[0].play();
+			})
+		})
+
+
+
+</script>
+{% endblock %}
+

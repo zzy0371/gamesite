@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block title %}
+<title>商务合作</title>
+{% endblock %}
+
+{% block script_link %}
+<link rel="stylesheet" href="/static/css/work.css">
+{% endblock %}
+
+{% block body %}
+<!-- Banner -->
+<div class="work_banner" style="background: url(/static/img/workbanner.jpg) no-repeat center;"></div>
+
+<!-- 工作QQ -->
+<div class="work_conntent">
+    <div class="w_c_con">
+        <ul>
+            {% for o in works %}
+            <li>
+                <div class="work_title">
+                    <font class="work_chinese">{{o.title}}</font>
+                    <font class="work_english">CPS、CPA and other cooperation in China</font>
+                </div>
+                <div class="work_qq">{{o.qq}}</div>
+                <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin={{o.qq}}&site=qq&menu=yes"><img
+                        src="/static/img/qqchat.png"/></a>
+            </li>
+            {% endfor %}
+
+
+        </ul>
+    </div>
+</div>
+{% endblock %}
